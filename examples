@@ -1,0 +1,130 @@
+#1. fertility rate data in descending order for Lativa
+
+SELECT distinct(year), fertility_rate_15_19
+FROM `bigquery-public-data.census_bureau_international.age_specific_fertility_rates` 
+Where country_name = "Latvia"
+ORDER BY year desc
+Limit 10
+
+#OUTPUT:
+Row	year	fertility_rate_15_19
+1	2050	16.0
+2	2049	16.0
+3	2048	16.1
+4	2047	16.1
+5	2046	16.1
+6	2045	16.1
+7	2044	16.1
+8	2043	16.1
+9	2042	16.1
+10	2041	16.1
+
+
+# 2. growth rate data in ascending order for Aruba
+
+SELECT distinct( year), growth_rate
+FROM `bigquery-public-data.census_bureau_international.birth_death_growth_rates` 
+where country_name= "Aruba"
+ORDER BY year asc
+limit 10
+
+#OUTPUT:
+Row	year	growth_rate	
+1	1981	1.0	
+2	1982	1.422	
+3	1983	1.751	
+4	1984	0.384	
+5	1985	-4.201	
+6	1986	-1.39	
+7	1987	-0.715	
+8	1988	1.793	
+9	1989	2.157	
+10	1990	5.364	
+
+
+#3. time of trip in seconds 
+
+SELECT duration_sec
+FROM `bigquery-public-data.san_francisco.bikeshare_trips` 
+where trip_id = 1030383
+
+#OUTPUT:5780
+
+
+# 4. time of trip in seconds 
+
+SELECT duration_sec
+FROM `bigquery-public-data.san_francisco.bikeshare_trips` 
+group by duration_sec
+limit 3
+
+#OUTPUT: 2618, 5957, 5913
+
+
+#5. number of panels that fit on the median roof 
+
+SELECT number_of_panels_median
+FROM `bigquery-public-data.sunroof_solar.solar_potential_by_censustract` 
+where state_name= "Virginia"
+limit 5
+
+#OUTPUT: 9,11,14,14,15
+
+
+#6.number of panels that fit on the median roof 
+
+SELECT distinct(state_name),number_of_panels_median
+FROM `bigquery-public-data.sunroof_solar.solar_potential_by_censustract` 
+ORDER BY number_of_panels_median desc
+limit 10
+
+#OUTPUT: Maine7813, California5657, South Carolina4829, New Jersey3052, Indiana2999, Michigan2632, Louisiana2147, Michigan2117, Michigan1972, Illinois1749
+
+
+#7. number of buildings in Google Maps that are suitable for solar
+
+SELECT distinct(state_name),count_qualified
+FROM `bigquery-public-data.sunroof_solar.solar_potential_by_censustract` 
+ORDER BY count_qualified desc
+limit 5
+
+#OUTPUT:
+1	Florida	22503	
+2	Texas	20108	
+3	Florida	14195	
+4	Texas	12349	
+5	Texas	11399	
+
+
+#8.growth rate for country code “AC”
+
+SELECT distinct(country_code),growth_rate
+FROM `bigquery-public-data.census_bureau_international.birth_death_growth_rates` 
+where country_code= "AC"
+ORDER BY growth_rate desc
+limit 5
+
+#OUTPUT: AC-2.03, AC-1.967, AC-1.924, AC-1.845, AC-1.801
+
+
+#9.the rate of natural increase (percent) for ”Aruba”
+SELECT  distinct(country_name),rate_natural_increase
+FROM `bigquery-public-data.census_bureau_international.birth_death_growth_rates` 
+where country_name= "Aruba"
+ORDER BY rate_natural_increase asc
+limit 3
+
+#OUTPUT: Aruba: -0.143, Aruba: -0.137, Aruba: -0.13
+
+
+#10.the gross reproduction rate for “Saint Barthelemy”
+
+SELECT distinct(year),gross_reproduction_rate
+FROM `bigquery-public-data.census_bureau_international.age_specific_fertility_rates` 
+where country_name= "Saint Barthelemy"
+ORDER BY year asc
+limit 5
+
+#OUTPUT: 1982-1.0488, 1983-1.0357, 1984-0.9909, 1985-0.9555, 1986-0.8792
+
+
